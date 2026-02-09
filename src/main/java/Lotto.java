@@ -18,6 +18,12 @@ public class Lotto {
         }
     }
 
+    public Lotto(List<Integer> numbers) {
+        for (int i : numbers) {
+            this.numbers.add(new Number(i));
+        }
+    }
+
     public List<Number> getNumbers() {
         return numbers;
     }

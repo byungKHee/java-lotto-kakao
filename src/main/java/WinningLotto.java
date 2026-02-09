@@ -23,4 +23,15 @@ public class WinningLotto {
             throw new IllegalArgumentException("당첨 번호에 중복이 있습니다.");
         }
     }
+
+    public WinningStatus compare(Lotto lotto) {
+        int count = 0;
+        boolean containsBonus = lotto.getNumbers().contains(bonusNumber);
+        for (Number number : lotto.getNumbers()) {
+            if (numbers.contains(number)) {
+                count++;
+            };
+        }
+        return WinningStatus.valueOf(count, containsBonus);
+    }
 }
