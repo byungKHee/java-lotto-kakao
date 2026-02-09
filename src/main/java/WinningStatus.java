@@ -1,11 +1,17 @@
 public enum WinningStatus {
-    FIRST,
-    SECOND,
-    THIRD,
-    FORTH,
-    FIFTH,
-    FAIL
+    FIRST(2000000000),
+    SECOND(30000000),
+    THIRD(1500000),
+    FORTH(50000),
+    FIFTH(5000),
+    FAIL(0)
     ;
+
+    private final int price;
+
+    WinningStatus(int price) {
+        this.price = price;
+    }
 
     public static WinningStatus valueOf(int count, boolean containsBonus) {
         if (count == 6) return FIRST;

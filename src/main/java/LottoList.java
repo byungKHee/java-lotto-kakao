@@ -1,16 +1,25 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class LottoList {
 
-    List<Lotto> lottoList = new ArrayList<>();
+    private List<Lotto> lottoList = new ArrayList<>();
+    private final int price;
 
     public LottoList(int price) {
+        this.price = price;
         int lottoCount = getLottoCount(price);
 
         for (int i = 0; i < lottoCount; i++) {
             lottoList.add(new Lotto());
         }
+    }
+
+    public LottoList(List<Lotto> lottoList) {
+        this.lottoList = lottoList;
+        this.price = lottoList.size() * Lotto.PRICE;
     }
 
     private int getLottoCount(int price) {
@@ -22,5 +31,9 @@ public class LottoList {
 
     public List<Lotto> getLottoList() {
         return lottoList;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }
