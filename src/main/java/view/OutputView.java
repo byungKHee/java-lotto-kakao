@@ -44,7 +44,7 @@ public class OutputView {
 
     private void printWinningRate(LottoResult lottoResult) {
         double rate = lottoResult.totalRate();
-        System.out.println("총 수익률은 " + rate + "입니다.");
+        System.out.printf("총 수익률은 %.2f입니다.%n", rate);
         System.out.println((rate >= 1)
                 ? "축하합니다! 이익이 발생했습니다(기준이 1이기 때문에 결과적으로 이득입니다.)"
                 : "아쉽게도 손해입니다(기준이 1이기 때문에 결과적으로 손해입니다.)");
