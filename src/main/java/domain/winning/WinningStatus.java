@@ -1,3 +1,5 @@
+package domain.winning;
+
 public enum WinningStatus {
     FIRST(2000000000L),
     SECOND(30000000L),

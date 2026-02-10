@@ -1,5 +1,7 @@
-import lotto.Lotto;
-import lotto.LottoGroup;
+package domain.winning;
+
+import domain.lotto.Lotto;
+import domain.lotto.LottoGroup;
 
 import java.util.EnumMap;
 import java.util.Map;

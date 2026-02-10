@@ -1,5 +1,7 @@
-import lotto.Lotto;
-import lotto.LottoNumber;
+package domain.winning;
+
+import domain.lotto.Lotto;
+import domain.lotto.LottoNumber;
 
 import java.util.ArrayList;
 import java.util.HashSet;

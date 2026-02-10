@@ -1,22 +1,33 @@
+import domain.lotto.LottoFactory;
+import domain.lotto.LottoIssuer;
+import domain.lotto.LottoGroup;
+import domain.winning.LottoResult;
+import domain.winning.WinningLotto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class LottoResultTest {
+
     @Test
-    void result() {
-        List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1, 2, 3, 8, 9, 10)));
-        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
-        lottos.add(new Lotto(List.of(10, 11, 12, 13, 14, 15)));
-        LottoList lottoList = new LottoList(lottos);
+    public void dummy() {
+        Random ramdom = new Random(10);
+        LottoFactory lottoFactory = new LottoFactory(ramdom);
+        LottoIssuer lottoIssuer = new LottoIssuer(lottoFactory);
+        LottoGroup lottoGroup = lottoIssuer.issueAuto(3);
 
-        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        // seed 10
+        // [16, 24, 26, 30, 31, 35]
+        // [1, 2, 3, 29, 40, 45]
+        // [6, 21, 23, 35, 37, 41]
 
-        LottoResult lottoResult = new LottoResult(lottoList, winningLotto);
+        List<Integer> expectedFirstLotto = List.of(6,21,23,24,37,41);
+        WinningLotto winningLotto = new WinningLotto(expectedFirstLotto, 35);
+        LottoResult lottoResult = new LottoResult(lottoGroup, winningLotto);
 
-        Assertions.assertEquals(10001.66, lottoResult.getWinningRate());
+        double rate = lottoResult.totalRate();
+        Assertions.assertEquals(10000.0, rate);
     }
 }
