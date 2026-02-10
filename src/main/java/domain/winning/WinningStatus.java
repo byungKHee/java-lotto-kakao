@@ -1,22 +1,28 @@
 package domain.winning;
 
 public enum WinningStatus {
-    FIRST(2000000000L),
-    SECOND(30000000L),
-    THIRD(1500000L),
-    FORTH(50000L),
-    FIFTH(5000L),
-    FAIL(0L)
+    FIRST(2000000000L, 6),
+    SECOND(30000000L, 5),
+    THIRD(1500000L, 5),
+    FORTH(50000L, 4),
+    FIFTH(5000L, 3),
+    FAIL(0L, 0)
     ;
 
     private final long prize;
+    private final int matchCount;
 
-    WinningStatus(long prize) {
+    WinningStatus(long prize, int matchCount) {
         this.prize = prize;
+        this.matchCount = matchCount;
     }
 
     public long prize() {
         return prize;
+    }
+
+    public int matchCount() {
+        return matchCount;
     }
 
     public static WinningStatus valueOf(int count, boolean containsBonus) {
