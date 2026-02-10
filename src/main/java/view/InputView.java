@@ -31,9 +31,6 @@ public class InputView {
 
     private List<Integer> parseNumbers(String input) {
         String[] parts = input.split(",");
-        if (parts.length != 6) {
-            throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
-        }
         for (String part : parts) {
             validateNumber(part);
         }
@@ -55,8 +52,8 @@ public class InputView {
     }
 
     private void validateNumber(String str) {
-        if(!str.trim().matches("\\d+")){
-            throw new IllegalArgumentException("입력 값이 숫자가 아닙니다.");
+        if(!str.trim().matches("-?\\d+")){
+            throw new IllegalArgumentException("입력 값이 정수가 아닙니다.");
         }
     }
 }
