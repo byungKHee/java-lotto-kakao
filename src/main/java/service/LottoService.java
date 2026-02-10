@@ -22,6 +22,4 @@ public class LottoService {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         return new LottoResult(lottoGroup, winningLotto);
     }
-
-
 }

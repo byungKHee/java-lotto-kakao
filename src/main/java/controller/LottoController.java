@@ -1,10 +1,7 @@
 package controller;
 
-import domain.lotto.LottoFactory;
 import domain.lotto.LottoGroup;
-import domain.lotto.LottoIssuer;
 import domain.winning.LottoResult;
-import domain.winning.WinningLotto;
 import service.LottoService;
 import view.InputView;
 import view.OutputView;

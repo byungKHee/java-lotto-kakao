@@ -20,10 +20,6 @@ public class LottoResult {
         }
     }
 
-    public int getCount(WinningStatus status) {
-        return counts.get(status);
-    }
-
     public Map<WinningStatus, Integer> getCounts() {
         return counts;
     }
@@ -31,7 +27,7 @@ public class LottoResult {
     public long totalPrize() {
         long total = 0;
         for (WinningStatus status : WinningStatus.values()) {
-            total += (long) status.prize() * counts.get(status);
+            total += status.prize() * counts.get(status);
         }
         return total;
     }
@@ -49,5 +45,4 @@ public class LottoResult {
         long paidMoney = (long) totalCount * Lotto.PRICE;
         return (double) totalPrize() / paidMoney;
     }
-
 }

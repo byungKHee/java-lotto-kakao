@@ -26,16 +26,17 @@ public class InputView {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
+        return parseNumbers(input);
+    }
 
+    private List<Integer> parseNumbers(String input) {
         String[] parts = input.split(",");
         if (parts.length != 6) {
             throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
         }
-
         for (String part : parts) {
             validateNumber(part);
         }
-
         List<Integer> winningNumbers = new ArrayList<>();
         for (String part : parts){
             winningNumbers.add(Integer.parseInt(part.trim()));
@@ -53,11 +54,9 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-
     private void validateNumber(String str) {
         if(!str.trim().matches("\\d+")){
             throw new IllegalArgumentException("입력 값이 숫자가 아닙니다.");
         }
     }
-
 }

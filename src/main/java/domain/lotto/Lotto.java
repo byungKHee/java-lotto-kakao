@@ -8,7 +8,7 @@ public class Lotto {
     public static final int MAX_NUMBER = 45;
     public static final int LOTTO_SIZE = 6;
 
-    List<LottoNumber> lottoNumbers = new ArrayList<>();
+    private final List<LottoNumber> lottoNumbers = new ArrayList<>();
 
     public Lotto(List<Integer> numbers) {
         validateLotto(numbers);
@@ -35,6 +35,9 @@ public class Lotto {
         }
     }
 
+    public boolean contains(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber);
+    }
 
     public List<LottoNumber> getNumbers() {
         return lottoNumbers;

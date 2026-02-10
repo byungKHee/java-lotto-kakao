@@ -18,7 +18,6 @@ public class LottoFactory {
     }
 
     public Lotto createAutoLotto() {
-
         List<Integer> shuffleNumbers = new ArrayList<>();
         for (int i = Lotto.MIN_NUMBER; i <= Lotto.MAX_NUMBER; i++) {
             shuffleNumbers.add(i);
@@ -26,13 +25,10 @@ public class LottoFactory {
         Collections.shuffle(shuffleNumbers, random);
         List<Integer> numbers = new ArrayList<>(shuffleNumbers.subList(0, Lotto.LOTTO_SIZE));
         Collections.sort(numbers);
-
         return new Lotto(numbers);
     }
 
     public Lotto createManualLotto(List<Integer> numbers) {
         return new Lotto(numbers);
     }
-
-
 }

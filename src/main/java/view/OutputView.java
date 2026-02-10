@@ -28,6 +28,11 @@ public class OutputView {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---------");
+        printWinningCount(lottoResult);
+        printWinningRate(lottoResult);
+    }
+
+    private void printWinningCount(LottoResult lottoResult) {
         for (Map.Entry<WinningStatus, Integer> entry : lottoResult.getCounts().entrySet()) {
             String format = String.format("%d개 일치" + ((entry.getKey() == WinningStatus.SECOND) ? ", 보너스 볼 일치" : "") + " (%d원) - %d개",
                     entry.getKey().matchCount(),
@@ -35,6 +40,9 @@ public class OutputView {
                     entry.getValue());
             System.out.println(format);
         }
+    }
+
+    private void printWinningRate(LottoResult lottoResult) {
         double rate = lottoResult.totalRate();
         System.out.println("총 수익률은 " + rate + "입니다.");
         System.out.println((rate >= 1)
