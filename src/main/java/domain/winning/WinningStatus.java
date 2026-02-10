@@ -1,16 +1,20 @@
 public enum WinningStatus {
-    FIRST(2000000000),
-    SECOND(30000000),
-    THIRD(1500000),
-    FORTH(50000),
-    FIFTH(5000),
-    FAIL(0)
+    FIRST(2000000000L),
+    SECOND(30000000L),
+    THIRD(1500000L),
+    FORTH(50000L),
+    FIFTH(5000L),
+    FAIL(0L)
     ;
 
-    private final int price;
+    private final long prize;
 
-    WinningStatus(int price) {
-        this.price = price;
+    WinningStatus(long prize) {
+        this.prize = prize;
+    }
+
+    public long prize() {
+        return prize;
     }
 
     public static WinningStatus valueOf(int count, boolean containsBonus) {
