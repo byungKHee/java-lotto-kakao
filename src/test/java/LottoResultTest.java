@@ -16,7 +16,7 @@ public class LottoResultTest {
         Random ramdom = new Random(10);
         LottoFactory lottoFactory = new LottoFactory(ramdom);
         LottoIssuer lottoIssuer = new LottoIssuer(lottoFactory);
-        LottoGroup lottoGroup = lottoIssuer.issueAuto(3);
+        LottoGroup lottoGroup = lottoIssuer.issueAuto(3000);
 
         // seed 10
         // [16, 24, 26, 30, 31, 35]
@@ -25,7 +25,7 @@ public class LottoResultTest {
 
         List<Integer> expectedFirstLotto = List.of(6,21,23,24,37,41);
         WinningLotto winningLotto = new WinningLotto(expectedFirstLotto, 35);
-        LottoResult lottoResult = new LottoResult(lottoGroup, winningLotto);
+        LottoResult lottoResult = lottoGroup.compare(winningLotto);
 
         double rate = lottoResult.totalRate();
         Assertions.assertEquals(10000.0, rate);

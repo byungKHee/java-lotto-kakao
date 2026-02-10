@@ -20,6 +20,6 @@ public class LottoService {
 
     public LottoResult calculateResult(LottoGroup lottoGroup, List<Integer> winningNumbers, int bonusNumber) {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-        return new LottoResult(lottoGroup, winningLotto);
+        return lottoGroup.compare(winningLotto);
     }
 }

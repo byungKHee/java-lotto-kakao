@@ -38,7 +38,7 @@ public class LottoTest {
         LottoFactory lottoFactory = new LottoFactory(random);
 
         LottoIssuer lottoIssuer = new LottoIssuer(lottoFactory);
-        LottoGroup lottoGroup = lottoIssuer.issueAuto(5);
+        LottoGroup lottoGroup = lottoIssuer.issueAuto(5000);
 
         for (Lotto lotto : lottoGroup.getLottoList()) {
             List<LottoNumber> lottoNumbers = lotto.getNumbers();

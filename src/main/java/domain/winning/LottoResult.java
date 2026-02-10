@@ -8,16 +8,10 @@ import java.util.Map;
 
 public class LottoResult {
 
-    private final EnumMap<WinningStatus, Integer> counts = new EnumMap<>(WinningStatus.class);
+    private final EnumMap<WinningStatus, Integer> counts;
 
-    public LottoResult(LottoGroup lottoGroup, WinningLotto winningLotto) {
-        for (WinningStatus status : WinningStatus.values()) {
-            counts.put(status, 0);
-        }
-        for (Lotto lotto : lottoGroup.getLottoList()) {
-            WinningStatus status = winningLotto.compare(lotto);
-            counts.put(status, counts.get(status) + 1);
-        }
+    public LottoResult(Map<WinningStatus, Integer> counts) {
+        this.counts = new EnumMap<>(counts);
     }
 
     public Map<WinningStatus, Integer> getCounts() {
