@@ -20,6 +20,17 @@ public class WinningLottoTest {
     }
 
     @Test
+    @DisplayName("당첨 번호 생성 시 보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
+    void winning_with_duplicate_bonus_number() {
+        List<Integer> input = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 6;
+        IllegalArgumentException exception = Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> new WinningLotto(input, bonusNumber)
+        );
+    }
+
+    @Test
     @DisplayName("당첨 여부를 확인한다. (4개 일치)")
     void check_winning() {
         List<Integer> input = List.of(1,2,3,4,8,9);

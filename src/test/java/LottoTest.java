@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LottoTest {
 
@@ -25,10 +26,35 @@ public class LottoTest {
     @DisplayName("수동 로또 하나를 생성한다.")
     void create_manual_lotto() {
         LottoFactory manualLottoFactory = new LottoFactory();
-        Lotto lotto = manualLottoFactory.createManualLotto(List.of(3, 11, 15, 29, 35, 44));
+        Lotto lotto = manualLottoFactory.createManualLotto(List.of(1, 11, 15, 29, 35, 45));
         List<LottoNumber> lottoNumbers = lotto.getNumbers();
 
         assertEquals(6, new HashSet<>(lottoNumbers).size());
+    }
+
+    @Test
+    @DisplayName("로또 생성 시 1~45 범위를 벗어나면 예외가 발생한다.")
+    void create_lotto_out_of_range() {
+        LottoFactory manualLottoFactory = new LottoFactory();
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> manualLottoFactory.createManualLotto(
+                        List.of(0, 11, 15, 29, 35, 46)
+                )
+        );
+    }
+
+    @Test
+    @DisplayName("로또 생성 시 중복된 번호가 있으면 예외가 발생한다.")
+    void create_lotto_with_duplicates() {
+        LottoFactory manualLottoFactory = new LottoFactory();
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> manualLottoFactory.createManualLotto(
+                        List.of(1, 11, 15, 29, 35, 35)
+                )
+        );
     }
 
     @Test
