@@ -31,11 +31,9 @@ public class InputView {
 
     private List<Integer> parseNumbers(String input) {
         String[] parts = input.split(",");
-        for (String part : parts) {
-            validateNumber(part);
-        }
         List<Integer> winningNumbers = new ArrayList<>();
         for (String part : parts){
+            validateNumber(part);
             winningNumbers.add(Integer.parseInt(part.trim()));
         }
         return winningNumbers;

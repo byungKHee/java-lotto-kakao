@@ -12,7 +12,7 @@ import java.util.Random;
 public class LottoResultTest {
 
     @Test
-    public void dummy() {
+    public void test_lotto_rate() {
         Random ramdom = new Random(10);
         LottoFactory lottoFactory = new LottoFactory(ramdom);
         LottoIssuer lottoIssuer = new LottoIssuer(lottoFactory);

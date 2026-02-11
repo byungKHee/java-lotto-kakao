@@ -19,7 +19,7 @@ public class LottoFactory {
 
     public Lotto createAutoLotto() {
         List<Integer> shuffleNumbers = new ArrayList<>();
-        for (int i = Lotto.MIN_NUMBER; i <= Lotto.MAX_NUMBER; i++) {
+        for (int i = LottoNumber.MIN_NUMBER; i <= LottoNumber.MAX_NUMBER; i++) {
             shuffleNumbers.add(i);
         }
         Collections.shuffle(shuffleNumbers, random);

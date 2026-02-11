@@ -20,7 +20,7 @@ public class LottoIssuer {
         return new LottoGroup(lottoList);
     }
 
-    public int getCount(int price) {
+    private int getCount(int price) {
         if (price <= 0) {
             throw new IllegalArgumentException("로또 발행 수는 1개 이상이어야 합니다.");
         }

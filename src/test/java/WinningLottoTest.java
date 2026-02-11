@@ -24,7 +24,7 @@ public class WinningLottoTest {
         Lotto lotto = new Lotto(List.of(1,2,3,4,8,9));
         WinningLotto winningLotto = new WinningLotto(List.of(1,2,3,4,5,6), 7);
         WinningStatus winningStatus = winningLotto.compare(lotto);
-        Assertions.assertEquals(WinningStatus.FORTH, winningStatus);
+        Assertions.assertEquals(WinningStatus.FOURTH, winningStatus);
     }
 
     @Test
