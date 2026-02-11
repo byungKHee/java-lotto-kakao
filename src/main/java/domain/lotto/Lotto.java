@@ -6,28 +6,26 @@ public class Lotto {
     public static final int PRICE = 1000;
     public static final int LOTTO_SIZE = 6;
 
-    private final List<LottoNumber> lottoNumbers = new ArrayList<>();
+    private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<LottoNumber> numbers) {
         validateLotto(numbers);
-        for (int i : numbers) {
-            this.lottoNumbers.add(new LottoNumber(i));
-        }
+        lottoNumbers = numbers;
     }
 
-    private void validateLotto(List<Integer> numbers){
+    private void validateLotto(List<LottoNumber> numbers){
         validateSize(numbers);
         validateDuplicates(numbers);
     }
 
-    private void validateSize(List<Integer> numbers){
+    private void validateSize(List<LottoNumber> numbers){
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
     }
 
-    private void validateDuplicates(List<Integer> numbers){
-        Set<Integer> numberSet = new HashSet<>(numbers);
+    private void validateDuplicates(List<LottoNumber> numbers){
+        Set<LottoNumber> numberSet = new HashSet<>(numbers);
         if (numberSet.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("로또 번호에 중복이 있습니다.");
         }

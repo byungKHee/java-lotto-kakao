@@ -25,10 +25,18 @@ public class LottoFactory {
         Collections.shuffle(shuffleNumbers, random);
         List<Integer> numbers = new ArrayList<>(shuffleNumbers.subList(0, Lotto.LOTTO_SIZE));
         Collections.sort(numbers);
-        return new Lotto(numbers);
+
+        List<LottoNumber> lottoNumbers = numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
+
+        return new Lotto(lottoNumbers);
     }
 
     public Lotto createManualLotto(List<Integer> numbers) {
-        return new Lotto(numbers);
+        List<LottoNumber> lottoNumbers = numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
+        return new Lotto(lottoNumbers);
     }
 }

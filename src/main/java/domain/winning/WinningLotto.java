@@ -14,8 +14,11 @@ public class WinningLotto {
     private final LottoNumber bonusLottoNumber;
 
     public WinningLotto(List<Integer> input, int bonusNumber) {
+        List<LottoNumber> lottoNumbers = input.stream()
+                .map(LottoNumber::new)
+                .toList();
+        this.winningLotto = new Lotto(lottoNumbers);
         this.bonusLottoNumber = new LottoNumber(bonusNumber);
-        this.winningLotto = new Lotto(input);
         validateNumber();
     }
 
