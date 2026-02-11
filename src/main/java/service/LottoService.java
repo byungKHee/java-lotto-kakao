@@ -20,8 +20,7 @@ public class LottoService {
         return lottoIssuer.issueAuto(purchaseAmount);
     }
 
-    public LottoResult calculateResult(LottoGroup lottoGroup, List<Integer> winningNumbers, int bonusNumber) {
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    public LottoResult calculateResult(LottoGroup lottoGroup, WinningLotto winningLotto) {
         return lottoGroup.compare(winningLotto);
     }
 }

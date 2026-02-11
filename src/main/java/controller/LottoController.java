@@ -3,6 +3,7 @@ package controller;
 import domain.lotto.LottoFactory;
 import domain.lotto.LottoGroup;
 import domain.winning.LottoResult;
+import domain.winning.WinningLotto;
 import service.LottoService;
 import view.InputView;
 import view.OutputView;
@@ -27,7 +28,8 @@ public class LottoController {
 
         List<Integer> winningNumbers = inputView.enterWinningNumbers();
         int bonus = inputView.enterBonusNumber();
-        LottoResult lottoResult = lottoService.calculateResult(lottoGroup, winningNumbers, bonus);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonus);
+        LottoResult lottoResult = lottoService.calculateResult(lottoGroup, winningLotto);
         outputView.printStatistics(lottoResult);
     }
 }
