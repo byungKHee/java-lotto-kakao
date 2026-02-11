@@ -10,11 +10,14 @@ import java.util.List;
 
 public class LottoService {
 
-    public LottoService() {
+    private final LottoFactory lottoFactory;
+
+    public LottoService(LottoFactory lottoFactory) {
+        this.lottoFactory = lottoFactory;
     }
 
-    public LottoGroup issueLottos(int purchaseAmount) {
-        LottoIssuer lottoIssuer = new LottoIssuer(new LottoFactory());
+    public LottoGroup issueLottoGroup(int purchaseAmount) {
+        LottoIssuer lottoIssuer = new LottoIssuer(lottoFactory);
         return lottoIssuer.issueAuto(purchaseAmount);
     }
 

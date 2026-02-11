@@ -1,5 +1,6 @@
 package controller;
 
+import domain.lotto.LottoFactory;
 import domain.lotto.LottoGroup;
 import domain.winning.LottoResult;
 import service.LottoService;
@@ -20,8 +21,8 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = inputView.enterPurchaseAmount();
-        LottoService lottoService = new LottoService();
-        LottoGroup lottoGroup = lottoService.issueLottos(purchaseAmount);
+        LottoService lottoService = new LottoService(new LottoFactory());
+        LottoGroup lottoGroup = lottoService.issueLottoGroup(purchaseAmount);
         outputView.printLottoCount(lottoGroup);
 
         List<Integer> winningNumbers = inputView.enterWinningNumbers();
@@ -29,6 +30,4 @@ public class LottoController {
         LottoResult lottoResult = lottoService.calculateResult(lottoGroup, winningNumbers, bonus);
         outputView.printStatistics(lottoResult);
     }
-
-
 }
