@@ -35,6 +35,16 @@ public class Lotto {
         return lottoNumbers.contains(lottoNumber);
     }
 
+    public int countMatch(Lotto other) {
+        int matchCount = 0;
+        for (LottoNumber number : lottoNumbers) {
+            if (other.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
     public List<LottoNumber> getNumbers() {
         return List.copyOf(lottoNumbers);
     }

@@ -29,13 +29,11 @@ public class WinningLotto {
     }
 
     public WinningStatus compare(Lotto lotto) {
-        int count = 0;
         // 보너스 번호 포함 여부 확인
-        boolean containsBonus = lotto.getNumbers().contains(bonusLottoNumber);
+        boolean containsBonus = lotto.contains(bonusLottoNumber);
         // 일치하는 번호 개수 세기
-        Set<LottoNumber> winningNumbersSet = new HashSet<>(winningLotto.getNumbers());
-        winningNumbersSet.retainAll(lotto.getNumbers());
-
-        return WinningStatus.valueOf(winningNumbersSet.size(), containsBonus);
+        int matchCount = winningLotto.countMatch(lotto);
+        
+        return WinningStatus.valueOf(matchCount, containsBonus);
     }
 }
