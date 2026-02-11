@@ -23,10 +23,8 @@ public class WinningLotto {
     }
 
     private void validateNumber() {
-        Set<LottoNumber> lottoNumberSet = new HashSet<>(winningLotto.getNumbers());
-        lottoNumberSet.add(bonusLottoNumber);
-        if (lottoNumberSet.size() != 7) {
-            throw new IllegalArgumentException("당첨 번호에 중복이 있습니다.");
+        if (winningLotto.contains(bonusLottoNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 
