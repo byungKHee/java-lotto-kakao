@@ -73,4 +73,33 @@ public class LottoTest {
         assertEquals(5, lottoGroup.getLottoList().size());
     }
 
+    @Test
+    @DisplayName("수동 로또 여러 개를 생성한다")
+    void create_manual_lottos() {
+        List<List<Integer>> manualNumbers = List.of(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(7, 8, 9, 10, 11, 12)
+        );
+
+        LottoFactory lottoFactory = new LottoFactory();
+        LottoIssuer lottoIssuer = new LottoIssuer(lottoFactory);
+        LottoGroup lottoGroup = lottoIssuer.issueManual(manualNumbers);
+        assertEquals(2, lottoGroup.getLottoList().size());
+    }
+
+    @Test
+    @DisplayName("자동, 수동 로또를 함께 생성한다")
+    void create_mixed_lottos() {
+        int totalPrice = 5000;
+        List<List<Integer>> manualNumbers = List.of(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(7, 8, 9, 10, 11, 12)
+        );
+
+        LottoFactory lottoFactory = new LottoFactory();
+        LottoIssuer lottoIssuer = new LottoIssuer(lottoFactory);
+        LottoGroup lottoGroup = lottoIssuer.issueMixed(totalPrice, manualNumbers);
+        assertEquals(5, lottoGroup.getLottoList().size());
+    }
+
 }

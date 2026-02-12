@@ -20,6 +20,26 @@ public class LottoIssuer {
         return new LottoGroup(lottoList);
     }
 
+    public LottoGroup issueManual(List<List<Integer>> manualNumbers) {
+        List<Lotto> lottoList = new ArrayList<>();
+        for (List<Integer> numbers : manualNumbers) {
+            lottoList.add(lottoFactory.createManualLotto(numbers));
+        }
+        return new LottoGroup(lottoList);
+    }
+
+    public LottoGroup issueMixed(int price, List<List<Integer>> manualNumbers) {
+        int autoCount = getCount(price) - manualNumbers.size();
+        List<Lotto> lottoList = new ArrayList<>();
+        for (List<Integer> numbers : manualNumbers) {
+            lottoList.add(lottoFactory.createManualLotto(numbers));
+        }
+        for (int i = 0; i < autoCount; i++) {
+            lottoList.add(lottoFactory.createAutoLotto());
+        }
+        return new LottoGroup(lottoList);
+    }
+
     private int getCount(int price) {
         if (price <= 0) {
             throw new IllegalArgumentException("로또 발행 수는 1개 이상이어야 합니다.");
