@@ -28,8 +28,11 @@ public class LottoIssuer {
         return new LottoGroup(lottoList);
     }
 
-    public LottoGroup issueMixed(int price, List<List<Integer>> manualNumbers) {
-        int autoCount = getCount(price) - manualNumbers.size();
+    public LottoGroup issueMixed(int totalPrice, List<List<Integer>> manualNumbers) {
+        if (manualNumbers == null) {
+            throw new IllegalArgumentException("수동 번호 목록은 null일 수 없습니다.");
+        }
+        int autoCount = getCount(totalPrice) - manualNumbers.size();
         List<Lotto> lottoList = new ArrayList<>();
         for (List<Integer> numbers : manualNumbers) {
             lottoList.add(lottoFactory.createManualLotto(numbers));
