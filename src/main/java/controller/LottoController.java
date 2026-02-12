@@ -34,17 +34,15 @@ public class LottoController {
     }
 
     public void run_step2() {
+        // 1. 금액, 수동 로또 번호 입력
         int purchaseAmount = inputView.enterPurchaseAmount();
-        int manualCount = inputView.enterManualPurchaseCount();
-        List<List<Integer>> manualNumbers = inputView.enterManualLottos(manualCount);
-
+        List<List<Integer>> manualNumbers = inputView.enterManualLottos(inputView.enterManualPurchaseCount());
+        // 2. 로또 발행
         LottoService lottoService = new LottoService(new LottoFactory());
         LottoGroup lottoGroup = lottoService.issueMixedLottoGroup(purchaseAmount, manualNumbers);
         outputView.printLottoCount(lottoGroup);
-
-        List<Integer> winningNumbers = inputView.enterWinningNumbers();
-        int bonus = inputView.enterBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonus);
+        WinningLotto winningLotto = new WinningLotto(inputView.enterWinningNumbers(), inputView.enterBonusNumber());
+        // 3. 결과 계산 및 출력
         LottoResult lottoResult = lottoService.calculateResult(lottoGroup, winningLotto);
         outputView.printStatistics(lottoResult);
     }
