@@ -15,7 +15,7 @@ public class LottoIssuer {
         int count = getCount(price);
         List<Lotto> lottoList = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            lottoList.add(lottoFactory.createAutoLotto());
+            lottoList.add(lottoFactory.create(new AutoLottoGenerator()));
         }
         return new LottoGroup(lottoList);
     }
@@ -23,7 +23,7 @@ public class LottoIssuer {
     public LottoGroup issueManual(List<List<Integer>> manualNumbers) {
         List<Lotto> lottoList = new ArrayList<>();
         for (List<Integer> numbers : manualNumbers) {
-            lottoList.add(lottoFactory.createManualLotto(numbers));
+            lottoList.add(lottoFactory.create(new ManualLottoGenerator(numbers)));
         }
         return new LottoGroup(lottoList);
     }
@@ -35,10 +35,10 @@ public class LottoIssuer {
         int autoCount = getCount(totalPrice) - manualNumbers.size();
         List<Lotto> lottoList = new ArrayList<>();
         for (List<Integer> numbers : manualNumbers) {
-            lottoList.add(lottoFactory.createManualLotto(numbers));
+            lottoList.add(lottoFactory.create(new ManualLottoGenerator(numbers)));
         }
         for (int i = 0; i < autoCount; i++) {
-            lottoList.add(lottoFactory.createAutoLotto());
+            lottoList.add(lottoFactory.create(new AutoLottoGenerator()));
         }
         return new LottoGroup(lottoList);
     }
