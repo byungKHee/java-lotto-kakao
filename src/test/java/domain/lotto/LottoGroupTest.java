@@ -35,6 +35,22 @@ public class LottoGroupTest {
         assertThat(result.getCounts().get(WinningStatus.FAIL)).isEqualTo(1);
     }
 
+    @DisplayName("concat은 두 그룹의 로또를 순서대로 합친 새 그룹을 반환한다")
+    @Test
+    void concat_returns_new_group_with_merged_lottos() {
+        LottoGroup first = new LottoGroup(List.of(
+                createLotto(1, 2, 3, 4, 5, 6),
+                createLotto(7, 8, 9, 10, 11, 12)
+        ));
+        LottoGroup second = new LottoGroup(List.of(
+                createLotto(13, 14, 15, 16, 17, 18)
+        ));
+
+        LottoGroup merged = first.concat(second);
+
+        assertThat(merged.getSize()).isEqualTo(3);
+    }
+
     private Lotto createLotto(int... numbers) {
         List<LottoNumber> lottoNumbers = java.util.Arrays.stream(numbers)
                 .mapToObj(LottoNumber::new)

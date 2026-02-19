@@ -2,7 +2,6 @@ package domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class LottoIssuer {
 
@@ -30,11 +29,14 @@ public class LottoIssuer {
         if (manualNumbers == null) {
             throw new IllegalArgumentException("수동 번호 목록은 null일 수 없습니다.");
         }
-        int autoCount = getCount(totalPrice) - manualNumbers.size();
-        List<Lotto> manualLottoList = issueManual(manualNumbers).getLottoList();
-        List<Lotto> autoLottoList = issueAutoByCount(autoCount);
-        List<Lotto> mixedLottoList = Stream.concat(manualLottoList.stream(), autoLottoList.stream()).toList();
-        return new LottoGroup(mixedLottoList);
+        int totalCount = getCount(totalPrice);
+        if (manualNumbers.size() > totalCount) {
+            throw new IllegalArgumentException("수동 번호 수량이 구매 가능한 로또 수량을 초과했습니다.");
+        }
+        int autoCount = totalCount - manualNumbers.size();
+        LottoGroup manualGroup = issueManual(manualNumbers);
+        LottoGroup autoGroup = new LottoGroup(issueAutoByCount(autoCount));
+        return manualGroup.concat(autoGroup);
     }
 
     private int getCount(int price) {
