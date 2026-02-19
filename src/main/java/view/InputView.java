@@ -40,10 +40,10 @@ public class InputView {
     }
 
     public List<List<Integer>> enterManualLottos(int count) {
-        System.out.println();
         if (count == 0) {
             return new ArrayList<>();
         }
+        System.out.println();
         List<List<Integer>> manualNumbers = new ArrayList<>();
         System.out.println("수동으로 구매할 번호를 입력해 주세요.");
         for (int i = 0; i < count; i++) {
