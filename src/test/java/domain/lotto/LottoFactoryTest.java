@@ -14,9 +14,10 @@ public class LottoFactoryTest {
     @DisplayName("자동 로또 하나를 생성하면 6개의 번호가 포함된 로또가 생성된다")
     @Test
     void create_auto_lotto_sorted_numbers() {
-        LottoFactory lottoFactory = new LottoFactory(new Random(1));
+        LottoFactory lottoFactory = new LottoFactory();
+        LottoGenerator generator = new AutoLottoGenerator(new Random(1));
 
-        Lotto lotto = lottoFactory.createAutoLotto();
+        Lotto lotto = lottoFactory.create(generator);
         List<Integer> numbers = extractNumbers(lotto);
 
         assertThat(numbers).hasSize(6);
@@ -25,11 +26,11 @@ public class LottoFactoryTest {
     @DisplayName("동일한 시드의 Random을 주면 자동 로또 결과가 동일하다")
     @Test
     void create_auto_lotto_is_deterministic_with_seeded_random() {
-        LottoFactory firstFactory = new LottoFactory(new Random(10));
-        LottoFactory secondFactory = new LottoFactory(new Random(10));
+        LottoFactory firstFactory = new LottoFactory();
+        LottoFactory secondFactory = new LottoFactory();
 
-        Lotto first = firstFactory.createAutoLotto();
-        Lotto second = secondFactory.createAutoLotto();
+        Lotto first = firstFactory.create(new AutoLottoGenerator(new Random(10)));
+        Lotto second = secondFactory.create(new AutoLottoGenerator(new Random(10)));
 
         assertThat(first.toString()).isEqualTo(second.toString());
     }
@@ -40,7 +41,7 @@ public class LottoFactoryTest {
         LottoFactory lottoFactory = new LottoFactory();
         List<Integer> input = List.of(8, 3, 21, 1, 45, 12);
 
-        Lotto lotto = lottoFactory.createManualLotto(input);
+        Lotto lotto = lottoFactory.create(new ManualLottoGenerator(input));
 
         assertThat(extractNumbers(lotto)).isEqualTo(input);
     }
